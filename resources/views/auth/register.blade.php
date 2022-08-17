@@ -1,4 +1,4 @@
 @extends('layouts.user')
 @section('content')
-    asasdfsdfsdfds
+    Register
 @endsection
