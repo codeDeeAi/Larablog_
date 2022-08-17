@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\Users\HomeController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\URL;
 
@@ -19,10 +20,6 @@ if (app()->environment('production')) {
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 ## Guest Routes
 Route::get('/login', function () {
     return view('auth.login');
@@ -33,3 +30,7 @@ Route::get('/register', function () {
 
 Route::post('/login', [AuthenticationController::class, 'login'])->name('login');
 Route::post('/register', [AuthenticationController::class, 'register'])->name('register');
+Route::get('/logout', [AuthenticationController::class, 'logout'])->name('logout');
+
+## Home 
+Route::get('/', [HomeController::class, 'index'])->name('users.home');

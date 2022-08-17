@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\UserTypesEnum;
 use App\Http\Requests\createUserRequest;
 use App\Http\Requests\loginRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
-use UserTypesEnum;
 
 class AuthenticationController extends Controller
 {
@@ -27,10 +27,11 @@ class AuthenticationController extends Controller
             'phone' => $request->phone,
             'user_type' => UserTypesEnum::USER,
             'email' => $request->email,
-            'password' => Hash::make($request->password, ['rounds' => 12])
+            'password' => Hash::make($request->password)
         ]);
 
         // Return with success message
+        return redirect()->route('login')->with('success', 'Account created successfully!, proceed to login');
     }
 
     /**
@@ -59,19 +60,12 @@ class AuthenticationController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-
-            if (auth()->user()->user_type === UserTypesEnum::USER) {
-                // Redirect to user dashboard
-                // return redirect()->intended('dashboard');
-            } else if (auth()->user()->user_type === UserTypesEnum::ADMIN) {
-                // Redirect to admin dashboard
-                // return redirect()->intended('dashboard');
-            }
+            return redirect((auth()->user()->user_type === UserTypesEnum::ADMIN) ? '/': '/' );
+        } else {
+            return back()->withErrors([
+                'The provided credentials do not match our records.',
+            ])->onlyInput($returnString);
         }
-
-        return back()->withErrors([
-            'The provided credentials do not match our records.',
-        ])->onlyInput([$returnString]);
     }
 
     /**

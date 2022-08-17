@@ -35,8 +35,7 @@
                             <x-form.inputs.password name="password" id="password" :traits="['required']" />
                         </div>
                     </div>
-                    <button type="submit" class="w-full px-8 py-3 font-semibold rounded-md text-white btn-primary">Sign
-                        in</button>
+                    <button type="submit" class="w-full px-8 py-3 font-semibold rounded-md text-white btn-primary">Register</button>
                 </form>
             </div>
         </div>

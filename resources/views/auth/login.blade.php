@@ -3,6 +3,9 @@
     <div class="max-w-screen-xl px-4 py-16 mx-auto sm:px-6 lg:px-8">
         <div class="max-w-lg mx-auto">
             <div class="w-full max-w-md p-4 rounded-md shadow sm:p-8 dark:bg-gray-900 dark:text-gray-100">
+                {{-- Session --}}
+                <x-alert.session-message />
+                {{-- Session Message --}}
                 <h2 class="mb-3 text-3xl font-semibold text-center">Login to your account</h2>
                 <p class="text-sm text-center dark:text-gray-400">Dont have account?
                     <a href="{{ route('register') }}" rel="noopener noreferrer" class="focus:underline hover:underline">Sign up here</a>
