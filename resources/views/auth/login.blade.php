@@ -5,7 +5,7 @@
             <div class="w-full max-w-md p-4 rounded-md shadow sm:p-8 dark:bg-gray-900 dark:text-gray-100">
                 <h2 class="mb-3 text-3xl font-semibold text-center">Login to your account</h2>
                 <p class="text-sm text-center dark:text-gray-400">Dont have account?
-                    <a href="#" rel="noopener noreferrer" class="focus:underline hover:underline">Sign up here</a>
+                    <a href="{{ route('register') }}" rel="noopener noreferrer" class="focus:underline hover:underline">Sign up here</a>
                 </p>
                 <div class="my-6 space-y-4">
                     @if (request()->get('type') == 'username')
@@ -42,14 +42,12 @@
                     <div class="space-y-4">
                         @if (request()->get('type') == 'username')
                             <div class="space-y-2">
-                                <label for="username" class="block text-sm">Username</label>
-                                <input type="text" name="username" id="username" placeholder="username"
-                                    value="{{ old('username') }}"
-                                    class="w-full px-3 py-2 border rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400">
+                                <x-form.inputs.text name="username" id="username" label="Username" placeholder="JohnDoe" :traits="[]" />
                             </div>
                         @else
                             <div class="space-y-2">
-                                <x-form.inputs.email name="email" id="email" label="Email address" />
+                                <x-form.inputs.email name="email" id="email" label="Email address"
+                                    :traits="[]" />
                             </div>
                         @endif
                         <div class="space-y-2">
@@ -58,7 +56,7 @@
                                 <a rel="noopener noreferrer" href="#"
                                     class="text-xs hover:underline dark:text-gray-400">Forgot password?</a>
                             </div>
-                            <x-form.inputs.password name="password" id="password" :attributes="['required' => true]" />
+                            <x-form.inputs.password name="password" id="password" :traits="['required']" />
                         </div>
                     </div>
                     <button type="submit" class="w-full px-8 py-3 font-semibold rounded-md text-white btn-primary">Sign
