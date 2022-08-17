@@ -2,7 +2,12 @@
 
 use App\Http\Controllers\AuthenticationController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\URL;
 
+// Force HTTPS for production
+if (app()->environment('production')) {
+    URL::forceScheme('https');
+}
 /*
 |--------------------------------------------------------------------------
 | Web Routes
