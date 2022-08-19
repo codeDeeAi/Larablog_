@@ -21,12 +21,43 @@ class TagController extends Controller
     }
 
     /**
-     * Create Tag.
+     * Create Tag Page.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function create(Request $request)
+    {
+        return view('admin.tags.create');
+    }
+
+    /**
+     * Create Tag.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required|unique:tags,name,except,id|string|max:35'
+        ]);
+
+        Tag::create([
+            'name' => $request->name
+        ]);
+
+        // Return with success message
+        return redirect()->route('tag.index')->with('success', 'Tag created successfully!');
+    }
+
+    /**
+     * Edit Tag Page.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Request $request)
     {
     }
 

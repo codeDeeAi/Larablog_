@@ -1,4 +1,4 @@
-@props(['traits' => []])
+@props(['traits' => [], 'showEvent' => '', 'editEvent' => '', 'deleteEvent' => ''])
 
 <div>
     <div class="inline-flex rounded-md shadow-sm" role="group">
@@ -6,7 +6,11 @@
             class="inline-flex items-center p-2 text-sm font-medium bg-transparent disabled:bg-gray-100 disabled:hover:text-gray-900 rounded-l-lg border hover:bg-teal-600 hover:text-white"
             @if (isset($traits['show']) && is_array($traits['show'])) 
                 @foreach ($traits['show'] as $key => $value)
-                    {!! $key.'='.$value !!}
+                    @if ($key == 'event')
+                        {!! $value.'='.$showEvent !!}
+                    @else
+                        {!! $key.'='.$value !!}                        
+                    @endif
                 @endforeach
             @endif>
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
@@ -21,7 +25,11 @@
             class="inline-flex items-center p-2 text-sm font-medium bg-transparent disabled:bg-gray-100 disabled:hover:text-gray-900 border-t border-b hover:bg-sky-600 hover:text-white"
             @if (isset($traits['edit']) && is_array($traits['edit'])) 
                 @foreach ($traits['edit'] as $key => $value)
-                    {!! $key.'='.$value !!}
+                      @if ($key == 'event')
+                        {!! $value.'='.$editEvent !!}
+                    @else
+                        {!! $key.'='.$value !!}                        
+                    @endif
                 @endforeach
             @endif>
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
@@ -35,7 +43,11 @@
             class="inline-flex items-center p-2 text-sm font-medium bg-transparent disabled:bg-gray-100 disabled:hover:text-gray-900 rounded-r-md border hover:bg-red-600 hover:text-white"
             @if (isset($traits['delete']) && is_array($traits['delete'])) 
                 @foreach ($traits['delete'] as $key => $value)
-                    {!! $key.'='.$value !!}
+                      @if ($key == 'event')
+                        {!! $value.'='.$deleteEvent !!}
+                    @else
+                        {!! $key.'='.$value !!}                        
+                    @endif
                 @endforeach
             @endif>
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"

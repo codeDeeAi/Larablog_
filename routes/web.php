@@ -47,7 +47,9 @@ Route::prefix('admin')->middleware(['auth', 'auth.admin'])->group(function () {
     ## Categories
     Route::controller(BlogCategoryController::class)->group(function () {
         Route::get('/categories', 'index')->name('category.index');
-        Route::post('/category', 'create')->name('category.create');
+        Route::get('/category', 'create')->name('category.create');
+        Route::get('/category/{category}', 'edit')->name('category.edit');
+        Route::post('/category', 'store')->name('category.store');
         Route::put('/category/{category}', 'update')->name('category.update');
         Route::delete('/category/{category}', 'destroy')->name('category.destroy');
     });
@@ -55,7 +57,9 @@ Route::prefix('admin')->middleware(['auth', 'auth.admin'])->group(function () {
     ## Tags
     Route::controller(TagController::class)->group(function () {
         Route::get('/tags', 'index')->name('tag.index');
-        Route::post('/tag', 'create')->name('tag.create');
+        Route::get('/tag', 'create')->name('tag.create');
+        Route::get('/tag/{tag}', 'edit')->name('tag.edit');
+        Route::post('/tag', 'store')->name('tag.store');
         Route::put('/tag/{tag}', 'update')->name('tag.update');
         Route::delete('/tag/{tag}', 'destroy')->name('tag.destroy');
     });
