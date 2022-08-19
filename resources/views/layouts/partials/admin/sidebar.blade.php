@@ -1,4 +1,4 @@
-<div class="flex flex-col justify-between h-screen bg-white border-r">
+<div id="admin_layout_sidebar" class="flex flex-col justify-between h-screen bg-white border-r hidden">
     <div class="px-4 py-6">
         <span class="flex w-32 h-10 bg-gray-200 rounded-lg text-xl font-bold"><span class="m-auto">Larablog</span></span>
 

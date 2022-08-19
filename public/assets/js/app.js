@@ -24,3 +24,41 @@ const togglePasswordVisibility = (inputId) => {
         elementButton.innerHTML = showIcon;
     }
 };
+
+/**
+ * Toggles hide/show for contents like sidebar, dropdown etc
+ * @params {String} Panel ID
+ * @params {String} Panel Name
+ * @params {Boolean} On page load
+ * @returns {void}
+ */
+const togglePanel = (panelId, uniqueName, pageLoad = false) => {
+    let panel = document.getElementById(panelId);
+    let panelIdentifierName = `panel_${panelId}_${uniqueName}`;
+    if (!pageLoad) {
+        if (panel.classList.contains('hidden')) {
+            panel.classList.remove('hidden');
+            localStorage.setItem(panelIdentifierName, false);
+            return;
+        } else {
+            panel.classList.add('hidden');
+            localStorage.setItem(panelIdentifierName, true);
+            return;
+        }
+    } else {
+        if (localStorage.getItem(panelIdentifierName) == 'true') {
+            if (!panel.classList.contains('hidden')) return panel.classList.add('hidden');
+            return;
+        }
+        return panel.classList.remove('hidden');
+    }
+};
+
+
+
+
+
+// ##-- On Page Load --##
+window.onload = () => {
+    togglePanel('admin_layout_sidebar', 'adminSidebar', true);
+}
