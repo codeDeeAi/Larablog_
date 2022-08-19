@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\URL;
 if (app()->environment('production')) {
     URL::forceScheme('https');
 }
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes

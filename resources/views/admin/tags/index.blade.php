@@ -44,13 +44,17 @@
                                 'delete' => ['event' => 'onclick'],
                             ]"
                                 editEvent="goToRoute('{{ route('tag.edit', ['tag' => $tag->id]) }}')"
-                                deleteEvent="deleteTableItem('{{ 'tag_delete_form_'.$tag->id }}')" />
-                            <x-form.delete-form route="{{ route('tag.destroy', ['tag' => $tag->id ]) }}" id="{{ 'tag_delete_form_'.$tag->id }}" method="DELETE" :fields="[]" />
+                                deleteEvent="deleteTableItem('{{ 'tag_delete_form_' . $tag->id }}')" />
+                            <x-form.delete-form route="{{ route('tag.destroy', ['tag' => $tag->id]) }}"
+                                id="{{ 'tag_delete_form_' . $tag->id }}" method="DELETE" :fields="[]" />
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
+        <div class="py-2 flex justify-end">
+            {{ $tags->links() }}
+        </div>
     </div>
 
     {{-- Content Ends --}}

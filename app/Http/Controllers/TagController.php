@@ -57,8 +57,10 @@ class TagController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request)
+    public function edit(Request $request, $tag)
     {
+        $tag = Tag::select('id', 'name')->findOrFail($tag);
+        return view('admin.tags.edit', compact('tag'));
     }
 
     /**
@@ -67,8 +69,19 @@ class TagController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $tag)
     {
+        $this->validate($request, [
+            'name' => 'required|unique:tags,name,except,id|string|max:35'
+        ]);
+        
+        $tag = Tag::findOrFail($tag);
+        $tag->update([
+            'name' => $request->name
+        ]);
+        
+        // Return with success message
+        return redirect()->route('tag.index')->with('success', 'Tag updated successfully!');
     }
 
     /**
@@ -77,7 +90,12 @@ class TagController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
+    public function destroy(Request $request, $tag)
     {
+        $tag = Tag::findOrFail($tag);
+        $tag->delete();
+
+        // Return with success message
+        return redirect()->route('tag.index')->with('success', 'Tag deleted successfully!');
     }
 }
