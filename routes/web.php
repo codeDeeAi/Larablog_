@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\BlogCategoryController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\Users\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -38,14 +39,24 @@ Route::get('/', [HomeController::class, 'index'])->name('users.home');
 
 
 ## Admin
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->middleware(['auth', 'auth.admin'])->group(function () {
     Route::get('/dashboard', function () {
-       return view('admin.dashboard.index');
+        return view('admin.dashboard.index');
+    })->name('dashboard.admin');
+
+    ## Categories
+    Route::controller(BlogCategoryController::class)->group(function () {
+        Route::get('/categories', 'index')->name('category.index');
+        Route::post('/category', 'create')->name('category.create');
+        Route::put('/category/{category}', 'update')->name('category.update');
+        Route::delete('/category/{category}', 'destroy')->name('category.destroy');
     });
 
     ## Tags
-    Route::get('/tags', [TagController::class, 'index'])->name('tag.index');
-    Route::post('/tag', [TagController::class, 'create'])->name('tag.create');
-    Route::put('/tag/{tag}', [TagController::class, 'update'])->name('tag.update');
-    Route::delete('/tag/{tag}', [TagController::class, 'destroy'])->name('tag.destroy');
+    Route::controller(TagController::class)->group(function () {
+        Route::get('/tags', 'index')->name('tag.index');
+        Route::post('/tag', 'create')->name('tag.create');
+        Route::put('/tag/{tag}', 'update')->name('tag.update');
+        Route::delete('/tag/{tag}', 'destroy')->name('tag.destroy');
+    });
 });

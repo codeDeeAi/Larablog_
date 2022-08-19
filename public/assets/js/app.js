@@ -54,6 +54,27 @@ const togglePanel = (panelId, uniqueName, pageLoad = false) => {
     }
 };
 
+/**
+ * Navigate to specific route etc
+ * @params {String} Route
+ * @returns {void}
+ */
+const goToRoute = (route) => {
+    window.location.href = route;
+    return;
+};
+
+/**
+ * Delete a table item 
+ * @params {String} Form ID
+ * @params {String} Delete Message
+ * @returns {void}
+ */
+const deleteTableItem = (formId, message = 'Are you sure you want to delete resource !') => {
+    if (!confirm(`${message}`)) return;
+    return document.getElementById(formId).submit();
+};
+
 
 
 

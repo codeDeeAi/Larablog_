@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Enums\UserTypesEnum;
 use Closure;
 use Illuminate\Http\Request;
 
@@ -16,6 +17,8 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        return $next($request);
+        if(!auth()->check()) return redirect()->route('login');
+        if(auth()->user()->user_type === UserTypesEnum::ADMIN->value) return $next($request);
+        return response('Not authorized !', 403);
     }
 }

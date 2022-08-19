@@ -60,7 +60,7 @@ class AuthenticationController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect((auth()->user()->user_type === UserTypesEnum::ADMIN) ? '/': '/' );
+            return redirect((auth()->user()->user_type === UserTypesEnum::ADMIN->value) ? route('dashboard.admin'): route('users.home') );
         } else {
             return back()->withErrors([
                 'The provided credentials do not match our records.',
