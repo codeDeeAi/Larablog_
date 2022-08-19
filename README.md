@@ -15,8 +15,30 @@ Would be available soon
 
 - Clone repository
 - Create ``.env`` file, add database credentials
+- Create an account with Tinymce WYSIWYG Editor [click here](https://www.tiny.cloud/auth/signup/), add your API token
+from Tinymce ``TINY_MCE_KEY="api-token..."`` to ``.env``
 - Run ``composer install``
 - Run ``php artisan migrate``
+
+## Component Docs
+- ### ALERT
+    |  NAME | PROPS  | BLADE USE   | DESCRIPTION|
+    |---|---|---|---|
+    |  ``session-message`` | none  | ``<x-alert.session-message />`` | Displays session messages ``success``, ``warning``, ``error``, ``info``|
+
+- ### BUTTONS
+     |  NAME | PROPS  | BLADE USE   | DESCRIPTION|
+    |---|---|---|---|
+    |  ``table-actions`` | (1). ``traits`` - An array of value grouped by button name ``show``, ``edit``, ``delete`` (2). ``showEvent`` - Pass javascript method to view/show button (3.) ``editEvent`` - Pass javascript method to edit button (4.) ``deleteEvent`` - Pass javascript method to delete button | <pre><x-buttons.table-actions :traits="['show' =>    ['disabled' => 'true', 'event' => 'onclick'],'edit' => ['event' => 'onclick'],'delete' => ['event' => 'onclick'],]" showEvent="jsMethod()" editEvent="jsMethod()" deleteEvent="jsMethod()" /></pre> | Displays CRUD buttons for table rows|
+- ### ERRORS
+    |  NAME | PROPS  | BLADE USE   | DESCRIPTION|
+    |---|---|---|---|
+    |  ``form-error`` | none  | ``<x-errors.form-error />`` | Displays form errors|
+- ### FORMS
+   - #### INPUTS
+   - #### DELETE FORM
+   
+
 
 ## Author
 
