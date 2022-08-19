@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthenticationController;
-use App\Http\Controllers\BlogCategoryController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\Users\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -46,7 +46,7 @@ Route::prefix('admin')->middleware(['auth', 'auth.admin'])->group(function () {
     })->name('dashboard.admin');
 
     ## Categories
-    Route::controller(BlogCategoryController::class)->group(function () {
+    Route::controller(CategoryController::class)->group(function () {
         Route::get('/categories', 'index')->name('category.index');
         Route::get('/category', 'create')->name('category.create');
         Route::get('/category/{category}', 'edit')->name('category.edit');

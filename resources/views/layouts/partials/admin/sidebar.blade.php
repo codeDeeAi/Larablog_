@@ -64,9 +64,9 @@
             </details>
 
             {{-- Categories --}}
-            <a href=""
+            <a href="{{ route('category.index') }}"
                 class="flex items-center px-4 py-2 rounded-lg 
-                {{ (get_menu_active_state([''])) ? 'bg-gray-100 text-gray-700 hover:bg-gray-100' : 'text-gray-500 hover:bg-gray-100 hover:text-gray-700' }}
+                {{ (get_menu_active_state(['category.index', 'category.create', 'category.edit'])) ? 'bg-gray-100 text-gray-700 hover:bg-gray-100' : 'text-gray-500 hover:bg-gray-100 hover:text-gray-700' }}
                 ">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 opacity-75" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor" stroke-width="2">
@@ -81,7 +81,7 @@
             {{-- Tags --}}
             <a href="{{ route('tag.index') }}"
                 class="flex items-center px-4 py-2 rounded-lg  
-                    {{ (get_menu_active_state(['tag.index'])) ? 'bg-gray-100 text-gray-700 hover:bg-gray-100' : 'text-gray-500 hover:bg-gray-100 hover:text-gray-700' }}
+                    {{ (get_menu_active_state(['tag.index', 'tag.create', 'tag.edit'])) ? 'bg-gray-100 text-gray-700 hover:bg-gray-100' : 'text-gray-500 hover:bg-gray-100 hover:text-gray-700' }}
                 ">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 opacity-75" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor" stroke-width="2">
