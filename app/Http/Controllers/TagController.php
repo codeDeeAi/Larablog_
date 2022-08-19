@@ -6,5 +6,14 @@ use Illuminate\Http\Request;
 
 class TagController extends Controller
 {
-    //
+    /**
+     * Get all tags.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Request $request)
+    {
+        return view('admin.tags.index', []);
+    }
 }

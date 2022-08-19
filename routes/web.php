@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\TagController;
 use App\Http\Controllers\Users\HomeController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\URL;
@@ -34,3 +35,17 @@ Route::get('/logout', [AuthenticationController::class, 'logout'])->name('logout
 
 ## Home 
 Route::get('/', [HomeController::class, 'index'])->name('users.home');
+
+
+## Admin
+Route::prefix('admin')->group(function () {
+    Route::get('/dashboard', function () {
+       return view('admin.dashboard.index');
+    });
+
+    ## Tags
+    Route::get('/tags', [TagController::class, 'index'])->name('tag.index');
+    Route::post('/tag', [TagController::class, 'create'])->name('tag.create');
+    Route::put('/tag/{tag}', [TagController::class, 'update'])->name('tag.update');
+    Route::delete('/tag/{tag}', [TagController::class, 'destroy'])->name('tag.destroy');
+});
