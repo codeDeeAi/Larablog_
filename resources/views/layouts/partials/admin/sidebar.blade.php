@@ -4,8 +4,9 @@
 
         <nav class="flex flex-col mt-6 space-y-1">
             {{-- Dashboard --}}
-            <a href="{{ route('dashboard.admin') }}" class="flex items-center px-4 py-2 rounded-lg
-            {{ (get_menu_active_state(['dashboard.admin'])) ? 'bg-gray-100 text-gray-700 hover:bg-gray-100' : 'text-gray-500 hover:bg-gray-100 hover:text-gray-700' }}
+            <a href="{{ route('dashboard.admin') }}"
+                class="flex items-center px-4 py-2 rounded-lg
+            {{ get_menu_active_state(['dashboard.admin']) ? 'bg-gray-100 text-gray-700 hover:bg-gray-100' : 'text-gray-500 hover:bg-gray-100 hover:text-gray-700' }}
             ">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 opacity-75" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor" stroke-width="2">
@@ -18,6 +19,7 @@
             </a>
             {{-- Dashboard Ends --}}
 
+            {{-- Blogs --}}
             <details class="group">
                 <summary
                     class="flex items-center px-4 py-2 text-gray-500 rounded-lg cursor-pointer hover:bg-gray-100 hover:text-gray-700">
@@ -39,34 +41,39 @@
                 </summary>
 
                 <nav class="mt-1.5 ml-8 flex flex-col">
+                    {{-- All Blogs --}}
                     <a href=""
                         class="flex items-center px-4 py-2 text-gray-500 rounded-lg hover:bg-gray-100 hover:text-gray-700">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 opacity-75" fill="none"
                             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                                d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
                         </svg>
 
-                        <span class="ml-3 text-sm font-medium"> Banned Users </span>
+                        <span class="ml-3 text-sm font-medium"> All Blogs </span>
                     </a>
+                    {{-- All Blogs End --}}
 
+                    {{-- Admin Blogs --}}
                     <a href=""
                         class="flex items-center px-4 py-2 text-gray-500 rounded-lg hover:bg-gray-100 hover:text-gray-700">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 opacity-75" fill="none"
                             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
 
-                        <span class="ml-3 text-sm font-medium"> Calendar </span>
+                        <span class="ml-3 text-sm font-medium"> Create Blog </span>
                     </a>
+                    {{-- Admin Blogs --}}
                 </nav>
             </details>
+            {{-- Blogs End --}}
 
             {{-- Categories --}}
             <a href="{{ route('category.index') }}"
                 class="flex items-center px-4 py-2 rounded-lg 
-                {{ (get_menu_active_state(['category.index', 'category.create', 'category.edit'])) ? 'bg-gray-100 text-gray-700 hover:bg-gray-100' : 'text-gray-500 hover:bg-gray-100 hover:text-gray-700' }}
+                {{ get_menu_active_state(['category.index', 'category.create', 'category.edit']) ? 'bg-gray-100 text-gray-700 hover:bg-gray-100' : 'text-gray-500 hover:bg-gray-100 hover:text-gray-700' }}
                 ">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 opacity-75" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor" stroke-width="2">
@@ -81,7 +88,7 @@
             {{-- Tags --}}
             <a href="{{ route('tag.index') }}"
                 class="flex items-center px-4 py-2 rounded-lg  
-                    {{ (get_menu_active_state(['tag.index', 'tag.create', 'tag.edit'])) ? 'bg-gray-100 text-gray-700 hover:bg-gray-100' : 'text-gray-500 hover:bg-gray-100 hover:text-gray-700' }}
+                    {{ get_menu_active_state(['tag.index', 'tag.create', 'tag.edit']) ? 'bg-gray-100 text-gray-700 hover:bg-gray-100' : 'text-gray-500 hover:bg-gray-100 hover:text-gray-700' }}
                 ">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 opacity-75" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor" stroke-width="2">
@@ -96,11 +103,13 @@
             {{-- Users --}}
             <a href="{{ route('users.index') }}"
                 class="flex items-center px-4 py-2 rounded-lg  
-                    {{ (get_menu_active_state(['users.index', 'user.admin.create'])) ? 'bg-gray-100 text-gray-700 hover:bg-gray-100' : 'text-gray-500 hover:bg-gray-100 hover:text-gray-700' }}
+                    {{ get_menu_active_state(['users.index', 'user.admin.create']) ? 'bg-gray-100 text-gray-700 hover:bg-gray-100' : 'text-gray-500 hover:bg-gray-100 hover:text-gray-700' }}
                 ">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 opacity-75" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-                  </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 opacity-75" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                </svg>
 
                 <span class="ml-3 text-sm font-medium"> Users </span>
             </a>
@@ -171,12 +180,14 @@
     <div class="sticky inset-x-0 bottom-0 border-t border-gray-100 overflow-x-auto">
         <a href="javascript:void(0)" class="flex items-center p-4 bg-white hover:bg-gray-50 shrink-0">
             <div class="rounded-full bg-gray-200 h-8 w-8 p-1 uppercase flex justify-center">
-                <span class="m-auto font-bold">{{generate_user_initials(auth()->user()->first_name, auth()->user()->last_name)}}</span>
+                <span
+                    class="m-auto font-bold">{{ generate_user_initials(auth()->user()->first_name, auth()->user()->last_name) }}</span>
             </div>
 
             <div class="ml-1.5">
                 <p class="text-xs">
-                    <strong class="block font-medium ">{{ auth()->user()->first_name.' '.auth()->user()->last_name }}</strong>
+                    <strong
+                        class="block font-medium ">{{ auth()->user()->first_name . ' ' . auth()->user()->last_name }}</strong>
 
                     <span class="truncate"> {{ auth()->user()->email }} </span>
                 </p>

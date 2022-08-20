@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\BlogController as AdminBlogController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TagController;
@@ -73,5 +74,14 @@ Route::prefix('admin')->middleware(['auth', 'auth.admin'])->group(function () {
         Route::get('/user/create', 'create')->name('user.admin.create');
         Route::post('/user/store', 'store')->name('user.admin.store');
         Route::delete('/user/{user}', 'destroy')->name('users.destroy');
+    });
+
+    ## Blogs
+    Route::controller(AdminBlogController::class)->group(function () {
+        Route::get('/blogs', 'index')->name('admin.blogs.index');
+        // Route::get('/users/show/{user}', 'show')->name('users.show');
+        // Route::get('/user/create', 'create')->name('user.admin.create');
+        // Route::post('/user/store', 'store')->name('user.admin.store');
+        // Route::delete('/user/{user}', 'destroy')->name('users.destroy');
     });
 });
