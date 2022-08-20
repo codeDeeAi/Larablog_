@@ -93,6 +93,19 @@
             </a>
             {{-- Tags Ends --}}
 
+            {{-- Users --}}
+            <a href="{{ route('users.index') }}"
+                class="flex items-center px-4 py-2 rounded-lg  
+                    {{ (get_menu_active_state(['users.index', 'user.admin.create'])) ? 'bg-gray-100 text-gray-700 hover:bg-gray-100' : 'text-gray-500 hover:bg-gray-100 hover:text-gray-700' }}
+                ">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 opacity-75" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                  </svg>
+
+                <span class="ml-3 text-sm font-medium"> Users </span>
+            </a>
+            {{-- Users Ends --}}
+
             <details class="group">
                 <summary
                     class="flex items-center px-4 py-2 text-gray-500 rounded-lg cursor-pointer hover:bg-gray-100 hover:text-gray-700">
@@ -154,18 +167,21 @@
         </nav>
     </div>
 
-    <div class="sticky inset-x-0 bottom-0 border-t border-gray-100">
-        <a href="" class="flex items-center p-4 bg-white hover:bg-gray-50 shrink-0">
-            <img class="object-cover w-10 h-10 rounded-full" src="https://www.hyperui.dev/photos/man-4.jpeg"
-                alt="Simon Lewis" />
+    {{-- Profile --}}
+    <div class="sticky inset-x-0 bottom-0 border-t border-gray-100 overflow-x-auto">
+        <a href="javascript:void(0)" class="flex items-center p-4 bg-white hover:bg-gray-50 shrink-0">
+            <div class="rounded-full bg-gray-200 h-8 w-8 p-1 uppercase flex justify-center">
+                <span class="m-auto font-bold">{{generate_user_initials(auth()->user()->first_name, auth()->user()->last_name)}}</span>
+            </div>
 
             <div class="ml-1.5">
                 <p class="text-xs">
-                    <strong class="block font-medium">Simon Lewis</strong>
+                    <strong class="block font-medium ">{{ auth()->user()->first_name.' '.auth()->user()->last_name }}</strong>
 
-                    <span> simonlewis@fakemail.com </span>
+                    <span class="truncate"> {{ auth()->user()->email }} </span>
                 </p>
             </div>
         </a>
     </div>
+    {{-- Profile Ends --}}
 </div>

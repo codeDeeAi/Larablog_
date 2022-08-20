@@ -75,6 +75,39 @@ const deleteTableItem = (formId, message = 'Are you sure you want to delete reso
     return document.getElementById(formId).submit();
 };
 
+/**
+ * Delete a table item with user prompt
+ * @params {String} JSON String with the following params ` @params {String} Form ID, @params {String} Delete Message , @params {Boolean} Use comparison value , @params {String} Comparison value`
+ * @returns {void}
+ */
+const deleteTableItemWithPrompt = (json_string) => {
+    if (!json_string) {
+        alert('json_string is missing');
+        return;
+    }
+    let data = JSON.parse(json_string);
+    if (!data.formId) {
+        alert('formId is required');
+        return;
+    }
+    if (!data.message) {
+        data['message'] = 'Are you sure you want to delete resource !';
+    }
+    if (!data.compareValue) {
+        alert('compareValue is required');
+        return;
+    }
+
+    if (!confirm(`${data.message}`)) return;
+    let userInput = prompt(`Plese enter value ${data.compareValue}`);
+    if (data.compareValue !== userInput) {
+        alert('Incorrect values, try again later !');
+        return;
+    };
+
+    return document.getElementById(formId).submit();
+};
+
 
 
 
