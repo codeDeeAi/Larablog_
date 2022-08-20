@@ -51,20 +51,29 @@
                                 @default
                                     <strong
                                         class="inline-flex items-center border border-teal-500 text-teal-500 border-current uppercase px-5 py-1.5 rounded-full text-[10px] tracking-wide">
-                                        {{ \App\Enums\UserTypesEnum::USER->name  }}
+                                        {{ \App\Enums\UserTypesEnum::USER->name }}
                                     </strong>
                             @endswitch
                         </td>
                         <td class="p-4 font-medium whitespace-nowrap">{{ $user->role_id }}</td>
                         <td class="p-4 whitespace-nowrap">{{ $user->created_at }}</td>
                         <td class="p-4 whitespace-nowrap">
-                            <x-buttons.table-actions :traits="[
-                                'show' => ['event' => 'onclick'],
-                                'edit' => ['disabled' => 'true'],
-                                'delete' => ['event' => 'onclick'],
-                            ]"
-                                showEvent="goToRoute('{{ route('users.show', ['user' => $user->id]) }}')"
-                                deleteEvent="deleteTableItemWithPrompt('{{ json_encode(['formId' => 'users_delete_form_' . $user->id,'compareValue' => $user->email ]) }}')" />
+                            @if (auth()->user()->id === $user->id)
+                                <x-buttons.table-actions :traits="[
+                                    'show' => ['event' => 'onclick'],
+                                    'edit' => ['disabled' => 'true'],
+                                    'delete' => ['disabled' => 'true'],
+                                ]"
+                                    showEvent="goToRoute('{{ route('users.show', ['user' => $user->id]) }}')" />
+                            @else
+                                <x-buttons.table-actions :traits="[
+                                    'show' => ['event' => 'onclick'],
+                                    'edit' => ['disabled' => 'true'],
+                                    'delete' => ['event' => 'onclick'],
+                                ]"
+                                    showEvent="goToRoute('{{ route('users.show', ['user' => $user->id]) }}')"
+                                    deleteEvent="deleteTableItemWithPrompt('{{ json_encode(['formId' => 'users_delete_form_' . $user->id, 'compareValue' => $user->email]) }}')" />
+                            @endif
                             <x-form.delete-form route="{{ route('users.destroy', ['user' => $user->id]) }}"
                                 id="{{ 'users_delete_form_' . $user->id }}" method="DELETE" :fields="[]" />
                         </td>

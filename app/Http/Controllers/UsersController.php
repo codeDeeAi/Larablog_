@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\UserTypesEnum;
+use App\Http\Requests\createUserRequest;
 use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
@@ -48,14 +51,16 @@ class UsersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(createUserRequest $request)
     {
-        $this->validate($request, [
-            'name' => 'required|unique:tags,name,except,id|string|max:35'
-        ]);
-
-        Tag::create([
-            'name' => $request->name
+        User::create([
+            'username' => $request->username,
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'phone' => $request->phone,
+            'user_type' => UserTypesEnum::ADMIN,
+            'email' => $request->email,
+            'password' => Hash::make($request->password)
         ]);
 
         // Return with success message

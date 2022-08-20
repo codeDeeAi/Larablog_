@@ -15,6 +15,13 @@ return new class extends Migration
     {
         Schema::create('blogs', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id');
+            $table->date('date');
+            $table->string('title');
+            $table->string('slug')->unique();
+            $table->boolean('is_published')->default(true);
+            $table->string('summary');
+            $table->string('content', 60000);
             $table->timestamps();
         });
     }
