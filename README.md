@@ -29,7 +29,7 @@ from Tinymce ``TINY_MCE_KEY="api-token..."`` to ``.env``
 - ### BUTTONS
      |  NAME | PROPS  | BLADE USE   | DESCRIPTION|
     |---|---|---|---|
-    |  ``table-actions`` | (1). ``traits`` - An array of value grouped by button name ``show``, ``edit``, ``delete`` (2). ``showEvent`` - Pass javascript method to view/show button (3.) ``editEvent`` - Pass javascript method to edit button (4.) ``deleteEvent`` - Pass javascript method to delete button | <pre><x-buttons.table-actions :traits="['show' =>    ['disabled' => 'true', 'event' => 'onclick'],'edit' => ['event' => 'onclick'],'delete' => ['event' => 'onclick'],]" showEvent="jsMethod()" editEvent="jsMethod()" deleteEvent="jsMethod()" /></pre> | Displays CRUD buttons for table rows|
+    |  ``table-actions`` | (1). ``traits`` - An array of value grouped by button name ``show``, ``edit``, ``delete`` (2). ``showEvent`` - Pass javascript method to view/show button (3.) ``editEvent`` - Pass javascript method to edit button (4.) ``deleteEvent`` - Pass javascript method to delete button | ``<x-buttons.table-actions :traits="['show' =>    ['disabled' => 'true', 'event' => 'onclick'],'edit' => ['event' => 'onclick'],'delete' => ['event' => 'onclick'],]" showEvent="jsMethod()" editEvent="jsMethod()" deleteEvent="jsMethod()" />`` | Displays CRUD buttons for table rows|
 - ### ERRORS
     |  NAME | PROPS  | BLADE USE   | DESCRIPTION|
     |---|---|---|---|

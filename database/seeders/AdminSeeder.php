@@ -19,12 +19,12 @@ class AdminSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            'email' => fake()->unique()->safeEmail(),
+            'email' => Str::random(10) . '@gmail.com',
             'password' => Hash::make('password'),
-            'username' => fake()->name(),
-            'first_name' => fake()->firstName(),
-            'last_name' => fake()->lastName(),
-            'phone' => fake()->phoneNumber(),
+            'username' => Str::random(10),
+            'first_name' => Str::random(10),
+            'last_name' =>  Str::random(10),
+            'phone' =>  Str::random(10),
             'user_type' => UserTypesEnum::ADMIN,
         ]);
     }
