@@ -6,6 +6,7 @@ use App\Enums\UserTypesEnum;
 use App\Http\Requests\createUserRequest;
 use App\Models\Tag;
 use App\Models\User;
+use App\Services\SearchableHelper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -17,10 +18,13 @@ class UsersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request, User $users)
     {
         $pagination = 10;
-        $users = User::select(
+        $searchable = new SearchableHelper($users, $request, 'username');
+        $users = $searchable->search();
+
+        $users = $users->select(
             'id',
             'username',
             'email',
@@ -31,6 +35,7 @@ class UsersController extends Controller
             'role_id',
             'created_at'
         )->paginate($pagination);
+
         return view('admin.users.index', compact('users'));
     }
 

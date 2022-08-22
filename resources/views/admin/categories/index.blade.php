@@ -5,7 +5,13 @@
 
     {{-- Content --}}
     {{-- Buttons --}}
-    <x-buttons.table-buttons :traits="[['name' => 'Create', 'route' => route('category.create')]]" />
+    <div class="flex justify-between">
+        <x-buttons.table-buttons :traits="[['name' => 'Create', 'route' => route('category.create')]]" />
+        <x-search.form-search-with-filters id="admin_tags_search" route="{{ route('category.index') }}" :filters="[
+            'name' => 'name',
+            'Date' => 'created_at',
+        ]" />
+    </div>
     {{-- Buttons Ends --}}
     {{-- Session --}}
     <x-alert.session-message />

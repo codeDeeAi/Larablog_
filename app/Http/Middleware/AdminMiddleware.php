@@ -18,7 +18,7 @@ class AdminMiddleware
     public function handle(Request $request, Closure $next)
     {
         if(!auth()->check()) return redirect()->route('login');
-        if(auth()->user()->user_type === UserTypesEnum::ADMIN->value) return $next($request);
+        if(auth()->user()->user_type->value === UserTypesEnum::ADMIN->value) return $next($request);
         return response('Not authorized !', 403);
     }
 }

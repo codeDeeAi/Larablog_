@@ -5,7 +5,17 @@
 
     {{-- Content --}}
     {{-- Buttons --}}
-    <x-buttons.table-buttons :traits="[['name' => 'Create', 'route' => route('user.admin.create')]]" />
+    <div class="flex justify-between">
+        <x-buttons.table-buttons :traits="[['name' => 'Create', 'route' => route('user.admin.create')]]" />
+        <x-search.form-search-with-filters id="admin_users_search" route="{{ route('users.index') }}" :filters="[
+            'Username' => 'username',
+            'Email' => 'email',
+            'Phone' => 'phone',
+            'name' => 'first_name',
+            'User Type' => 'user_type',
+            'Date' => 'created_at',
+        ]" />
+    </div>
     {{-- Buttons Ends --}}
     {{-- Session --}}
     <x-alert.session-message />
@@ -44,14 +54,14 @@
                                 @case(\App\Enums\UserTypesEnum::ADMIN->value)
                                     <strong
                                         class="inline-flex items-center border border-blue-500 text-blue-500 border-current uppercase px-5 py-1.5 rounded-full text-[10px] tracking-wide">
-                                        {{ \App\Enums\UserTypesEnum::ADMIN->name }}
+                                        {{ $user->user_type->name }}
                                     </strong>
                                 @break
 
                                 @default
                                     <strong
                                         class="inline-flex items-center border border-teal-500 text-teal-500 border-current uppercase px-5 py-1.5 rounded-full text-[10px] tracking-wide">
-                                        {{ \App\Enums\UserTypesEnum::USER->name }}
+                                        {{ $user->user_type->name }}
                                     </strong>
                             @endswitch
                         </td>

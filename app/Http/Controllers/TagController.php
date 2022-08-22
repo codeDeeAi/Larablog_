@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tag;
+use App\Services\SearchableHelper;
 use Illuminate\Http\Request;
 
 class TagController extends Controller
@@ -13,10 +14,12 @@ class TagController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request, Tag $tags)
     {
         $pagination = 10;
-        $tags = Tag::select('id', 'name', 'updated_at')->paginate($pagination);
+        $searchable = new SearchableHelper($tags, $request, 'name');
+        $tags = $searchable->search();
+        $tags = $tags->select('id', 'name', 'updated_at')->paginate($pagination);
         return view('admin.tags.index', compact('tags'));
     }
 
