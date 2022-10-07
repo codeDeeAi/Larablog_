@@ -79,6 +79,8 @@ Route::prefix('admin')->middleware(['auth', 'auth.admin'])->group(function () {
     ## Blogs
     Route::controller(AdminBlogController::class)->group(function () {
         Route::get('/blogs', 'index')->name('admin.blogs.index');
+        Route::get('/blog/create', 'create')->name('admin.blogs.create');
+        Route::post('/blog/store', 'store')->name('admin.blogs.store');
         // Route::get('/users/show/{user}', 'show')->name('users.show');
         // Route::get('/user/create', 'create')->name('user.admin.create');
         // Route::post('/user/store', 'store')->name('user.admin.store');

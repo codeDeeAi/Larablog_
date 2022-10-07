@@ -12,6 +12,8 @@
 
     <script src="/assets/js/app.js"></script>
 
+    @include('layouts.partials.scripts.tinymce')
+
     @vite('resources/css/app.css')
 
     <!-- Styles -->

@@ -20,9 +20,11 @@
             {{-- Dashboard Ends --}}
 
             {{-- Blogs --}}
-            <details class="group">
+            <details @if (get_menu_active_state(['admin.blogs.index', 'admin.blogs.create'])) open @endif class="group">
                 <summary
-                    class="flex items-center px-4 py-2 text-gray-500 rounded-lg cursor-pointer hover:bg-gray-100 hover:text-gray-700">
+                    class="flex items-center px-4 py-2 text-gray-500 rounded-lg cursor-pointer 
+                    {{ get_menu_active_state(['admin.blogs.index', 'admin.blogs.create']) ? 'bg-gray-100 text-gray-700 hover:bg-gray-100' : 'text-gray-500 hover:bg-gray-100 hover:text-gray-700' }} 
+                    ">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 opacity-75" fill="none"
                         viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -43,7 +45,9 @@
                 <nav class="mt-1.5 ml-8 flex flex-col">
                     {{-- All Blogs --}}
                     <a href=""
-                        class="flex items-center px-4 py-2 text-gray-500 rounded-lg hover:bg-gray-100 hover:text-gray-700">
+                        class="flex items-center px-4 py-2 text-gray-500 rounded-lg 
+                        {{ get_menu_active_state(['dashboard.admin']) ? 'bg-gray-100 text-gray-700 hover:bg-gray-100' : 'text-gray-500 hover:bg-gray-100 hover:text-gray-700' }}
+                        ">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 opacity-75" fill="none"
                             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -55,8 +59,10 @@
                     {{-- All Blogs End --}}
 
                     {{-- Admin Blogs --}}
-                    <a href=""
-                        class="flex items-center px-4 py-2 text-gray-500 rounded-lg hover:bg-gray-100 hover:text-gray-700">
+                    <a href="{{ route('admin.blogs.create') }}"
+                        class="flex items-center px-4 py-2 text-gray-500 rounded-lg
+                        {{ get_menu_active_state(['admin.blogs.create']) ? 'bg-gray-100 text-gray-700 hover:bg-gray-100' : 'text-gray-500 hover:bg-gray-100 hover:text-gray-700' }}
+                        ">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 opacity-75" fill="none"
                             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round"

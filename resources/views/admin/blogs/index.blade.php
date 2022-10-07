@@ -5,7 +5,7 @@
 
     {{-- Content --}}
     {{-- Buttons --}}
-    <x-buttons.table-buttons :traits="[['name' => 'Create', 'route' => route('tag.create')]]" />
+    <x-buttons.table-buttons :traits="[['name' => 'Create', 'route' => route('admin.blogs.create')]]" />
     {{-- Buttons Ends --}}
     {{-- Session --}}
     <x-alert.session-message />
@@ -33,7 +33,7 @@
             </thead>
 
             <tbody class="divide-y divide-gray-100">
-                @foreach ($tags as $tag)
+                {{-- @foreach ($tags as $tag)
                     <tr>
                         <td class="p-4 font-medium whitespace-nowrap">{{ $tag->name }}</td>
                         <td class="p-4 whitespace-nowrap">{{ $tag->updated_at }}</td>
@@ -49,11 +49,11 @@
                                 id="{{ 'tag_delete_form_' . $tag->id }}" method="DELETE" :fields="[]" />
                         </td>
                     </tr>
-                @endforeach
+                @endforeach --}}
             </tbody>
         </table>
         <div class="py-2 flex justify-end">
-            {{ $tags->links() }}
+            {{-- {{ $tags->links() }} --}}
         </div>
     </div>
 

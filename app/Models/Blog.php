@@ -57,7 +57,7 @@ class Blog extends Model
      */
     public function tags()
     {
-        return $this->hasMany(BlogTag::class, 'id', 'blog_id');
+        return $this->hasMany(BlogTag::class, 'blog_id');
     }
 
     /**
@@ -67,6 +67,6 @@ class Blog extends Model
      */
     public function categories()
     {
-        return $this->hasMany(BlogCategory::class, 'id', 'blog_id');
+        return $this->hasMany(BlogCategory::class, 'blog_id');
     }
 }

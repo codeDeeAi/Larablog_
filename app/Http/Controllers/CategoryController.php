@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Services\SearchableHelper;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -13,10 +14,12 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request, Category $categories)
     {
         $pagination = 10;
-        $categories = Category::select('id', 'name', 'image', 'updated_at')->paginate($pagination);
+        $searchable = new SearchableHelper($categories, $request, 'name');
+        $categories = $searchable->search();
+        $categories = $categories->select('id', 'name', 'image', 'updated_at')->paginate($pagination);
         return view('admin.categories.index', compact('categories'));
     }
 
